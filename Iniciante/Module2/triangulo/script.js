@@ -6,8 +6,8 @@ const [A, B, C] = line.split(" ").map((item) => parseFloat(item));
 
 if (A < B + C && B < A + C && C < B + A) {
   const perimetro = A + B + C;
-  console.log(`Perimetro = ${perimetro.toFixed(2)}`);
+  console.log(`Perimetro = ${perimetro.toFixed(1)}`);
 } else {
   const area = ((A + B) * C) / 2;
-  console.log(`Area = ${area.toFixed(2)}`);
+  console.log(`Area = ${area.toFixed(1)}`);
 }
