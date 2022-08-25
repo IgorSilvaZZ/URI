@@ -28,9 +28,9 @@ for (let i = 1; i <= numberLines; i++) {
     }
   }
 
-  lines.push(line);
+  lines.push(line.join(" "));
 }
 
 lines.forEach((item) => {
-  console.log(...item);
+  console.log(item);
 });
