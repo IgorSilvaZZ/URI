@@ -6,20 +6,16 @@ const [hourInitial, minutesInitial, hourEnd, minutesEnd] = line
   .split(" ")
   .map((item) => parseInt(item));
 
-let totalHours = hourEnd - hourInitial;
-let totalMinutes = minutesEnd - minutesInitial;
-
-if (totalHours < 0) {
-  totalHours = 24 + (hourEnd - hourInitial);
-}
-
-if (totalMinutes < 0) {
-  totalMinutes = 60 + (minutesEnd - minutesInitial);
-  totalHours--;
-}
-
-if (hourInitial == hourEnd && minutesInitial == minutesEnd) {
+if (hourInitial === hourEnd && minutesInitial === minutesEnd) {
   console.log("O JOGO DUROU 24 HORA(S) E 0 MINUTO(S)");
 } else {
-  console.log(`O JOGO DUROU ${totalHours} HORA(S) E ${totalMinutes} MINUTO(S)`);
+  let hourInitialForMinutes = hourInitial * 60 + minutesInitial;
+  let hourEndForMinutes = hourEnd * 60 + minutesEnd;
+
+  let hoursForMinutes = hourEndForMinutes - hourInitialForMinutes;
+
+  let hours = parseInt(hoursForMinutes / 60);
+  let minutes = parseInt(hoursForMinutes % 60);
+
+  console.log(`O JOGO DUROU ${hours} HORA(S) E ${minutes} MINUTO(S)`);
 }
