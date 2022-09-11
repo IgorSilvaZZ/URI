@@ -21,12 +21,10 @@ for (let line = 0; line <= 11; line++) {
 }
 
 if (operation.trim() == "S") {
-  for (let line = 0; line < matriz.length; line++) {
-    for (let col = 0; col < matriz[line].length; col++) {
+  for (let line = 0; line < 11; line++) {
+    for (let col = 0; col < 11; col++) {
       if (col > line) {
-        const currentValue = matriz[line][col];
-
-        some += currentValue;
+        some += matriz[line][col];
       }
     }
   }
@@ -35,12 +33,10 @@ if (operation.trim() == "S") {
 }
 
 if (operation.trim() == "M") {
-  for (let line = 0; line < matriz.length; line++) {
-    for (let col = 0; col < matriz[line].length; col++) {
+  for (let line = 0; line < 11; line++) {
+    for (let col = 0; col < 11; col++) {
       if (col > line) {
-        const currentValue = matriz[line][col];
-
-        some += currentValue;
+        some += matriz[line][col];
       }
     }
   }
