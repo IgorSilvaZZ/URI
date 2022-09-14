@@ -22,33 +22,20 @@ for (let line = 0; line <= 11; line++) {
   matrix.push(column);
 }
 
-/* console.log(`Linha 0 Coluna 10 => ${matrix[10][0]}`);
-console.log(`Linha 0 Coluna 9 => ${matrix[9][0]}`);
-console.log(`Linha 0 Coluna 8 => ${matrix[8][0]}`);
-console.log(`Linha 0 Coluna 7 => ${matrix[7][0]}`);
-
-console.log("===========================================");
-
-console.log(`Linha ${line} Coluna ${col} => ${matrix[line][col]}`);
-
-console.log(); */
-
-let countColumn = 10;
-
 for (let line = 0; line <= 11; line++) {
-  for (let col = countColumn; col >= 0; col--) {
-    some += matrix[line][col];
+  for (let col = 0; col <= 11; col++) {
+    if (col < matrix.length - line - 1) {
+      some += matrix[line][col];
+    }
   }
-
-  countColumn--;
 }
 
-if (operation === "S") {
+if (operation == "S") {
   console.log(some.toFixed(1));
 }
 
 if (operation == "M") {
-  some /= (matrix.length * matrix.length - 2) / 2;
+  some /= (matrix.length * matrix.length - 12) / 2;
 
   console.log(some.toFixed(1));
 }
