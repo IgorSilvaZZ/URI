@@ -1,12 +1,10 @@
 const { readFileSync } = require("fs");
 
-const lines = readFileSync("stdin", "utf-8").split("\n").map(Number);
+const lines = readFileSync("/dev/stdin", "utf-8").split("\n").map(Number);
 
 let indexMatrix = 0;
 
 while (true) {
-  const matrix = [];
-
   let currentNumber = lines[indexMatrix];
 
   if (currentNumber === 0) {
@@ -14,7 +12,8 @@ while (true) {
   }
 
   for (let line = 0; line < currentNumber; line++) {
-    const column = [];
+    let message = "";
+    let end = "";
 
     for (let col = 0; col < currentNumber; col++) {
       // Distancia entre as linhas
@@ -44,13 +43,19 @@ while (true) {
         distance = distanceLine;
       }
 
-      column.push(distance + 1);
+      message += `  ${distance + 1}${end}`;
+
+      if (col != currentNumber - 1) {
+        end = " ";
+      }
     }
 
-    matrix.push(String(column).padStart(3, " "));
+    console.log(message);
+
+    console.log();
   }
 
-  console.log(matrix);
+  console.log();
 
   indexMatrix++;
 }
