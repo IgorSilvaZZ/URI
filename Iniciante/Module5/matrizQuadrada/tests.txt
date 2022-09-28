@@ -1,0 +1,141 @@
+Tamanho 3 X 3
+
+Testes de mesa das bordas distancia das linhas:
+currentNumber => 3
+
+line => 0
+col => 0
+
+(line < currentNumber - line - 1)
+0 (3 - 0 - 1)
+0 2 => true
+distanceLine = line
+distanceLine = 0
+
+==================
+
+line => 0
+col => 1
+
+(line < currenNumber - line - 1)
+0 (3 - 0 - 1)
+0 2 => true
+distanceLine = line
+distanceLine = 0
+
+===================
+
+line => 1
+col => 0
+
+(line < currentNumber - line - 1)
+1 (3 - 1 - 1)
+1 1 => false
+distanceLine = currentNumber - line - 1
+distanceLine = 3 - 1 - 1
+distanceLine = 1
+
+===================
+
+line => 2
+col => 0
+
+(line < currentNumber - line - 1)
+3 (3 - 2 - 1)
+3 0 => false
+distanceLine = currentNumber - line - 1
+distanceLine = 3 - 2 - 1
+distanceLine = 0
+
+-H-
+
+Tamanho 3 X 3
+
+Testes de mesa das bordas distancia das colunas:
+
+line => 0
+col => 0
+
+(col < currentNumber - col - 1)
+0 (3 - 0 - 1)
+0 2 => true
+distanceColumn = col
+distanceColumn = 0
+
+=====================
+
+line => 0
+col => 1
+
+(col < currentNumber - col - 1)
+1 (3 - 1 - 1)
+1 1 => false
+distanceColumn = currentNumber - col - 1
+distanceColumn = 1
+
+=====================
+
+line => 0
+col => 2
+
+(col < currentNumber - col - 1)
+2 (3 - 2 - 1)
+2 0 => false 
+distanceColumn = currentNumber - col - 1
+distanceColumn = 0
+
+-H-
+
+Tamanho 3 X 3
+
+Testes de mesa para pegar a distancia absoluta
+
+line => 0
+col => 0
+
+Linha:
+(line < currentNumber - line - 1)
+0 (3 - 0 - 1)
+0 2 => true
+distanceLine = line
+distanceLine = 0
+
+Coluna:
+(col < currentNumber - col - 1)
+0 (3 - 0 - 1)
+0 2 => true
+distanceColumn = col
+distanceColumn = 0
+
+Distancia Absoluta:
+(distanceColumn < distanceLine)
+0 0 => false
+distance = distanceLine
+distance = 0
+
+=====================
+
+line => 1
+col => 1
+
+Linha:
+(line < currentNumber - line - 1)
+1 (3 - 1 - 1)
+1 1 => false
+distanceLine = currentNumber - line - 1
+distanceLine = 3 - 1 - 1
+distanceLine = 1
+
+Coluna:
+(col < currentNumber - col - 1)
+1 (3 - 1 - 1)
+1 1 => false
+distanceColumn = currentNumber - col - 1
+distanceColumn = 3 - 1 - 1
+distanceColumn = 1
+
+Distancia Absoluta:
+(distanceColumn < distanceLine)
+1 1 => false
+distance = distanceLine
+distance = 1
