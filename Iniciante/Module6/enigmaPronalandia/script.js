@@ -1,4 +1,5 @@
 const { readFileSync } = require("fs");
+const { EOL } = require("os");
 
 const [number] = readFileSync("stdin", "utf-8").split("\n");
 
@@ -8,4 +9,4 @@ for (let i = number.length - 1; i >= 0; i--) {
   result += number[i];
 }
 
-console.log(`${result}`);
+console.log(`${result} ${EOL}`);
