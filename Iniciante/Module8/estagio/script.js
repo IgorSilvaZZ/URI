@@ -2,17 +2,25 @@ const { readFileSync } = require("fs");
 
 const lines = readFileSync("stdin", "utf-8").split("\n");
 
-const numberLines = Number(lines.shift());
-
 while (lines.length > 0) {
+  const numberLines = Number(lines.shift().trim());
+
   let someNotesCredits = 0;
   let someCredits = 0;
 
-  for (let i = 1; i <= numberLines; i++) {
-    const [note, credits] = lines.shift().split(" ").map(Number);
+  for (let i = 0; i < numberLines; i++) {
+    let [note, credits] = lines
+      .shift()
+      .split(" ")
+      .map((item) => item.trim());
 
-    someNotesCredits += note * credits;
-    someCredits += credits;
+    if (note !== "" && credits !== "") {
+      note = Number(note);
+      credits = Number(credits);
+
+      someNotesCredits += note * credits;
+      someCredits += credits;
+    }
   }
 
   const calcCredits = someCredits * 100.0;
