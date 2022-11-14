@@ -16,8 +16,12 @@ const mounts = {
   11: 30,
 };
 
-while (lines.length > 0) {
+while (true) {
   const [mouth, day] = lines.shift().split(" ").map(Number);
+
+  if (lines.length === 0) {
+    break;
+  }
 
   const diffDays = 25 - day;
 
