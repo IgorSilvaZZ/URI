@@ -2,8 +2,12 @@ const { readFileSync } = require("fs");
 
 const lines = readFileSync("stdin", "utf-8").split("\n");
 
-while (lines.length > 0) {
+while (true) {
   const numberLines = Number(lines.shift().trim());
+
+  if (lines.length === 0) {
+    break;
+  }
 
   let someNotesCredits = 0;
   let someCredits = 0;
