@@ -18,7 +18,7 @@ for (let i = 1; i <= numberCases; i++) {
 
     const result = percentRed + percentGreen + percentBlue;
 
-    console.log(`Caso #${i}: ${result.toFixed(0)}`);
+    console.log(`Caso #${i}: ${parseInt(result)}`);
   }
 
   if (typeConversion === "mean") {
@@ -26,7 +26,7 @@ for (let i = 1; i <= numberCases; i++) {
 
     const arrange = (red + green + blue) / 3;
 
-    console.log(`Caso #${i}: ${arrange.toFixed(0)}`);
+    console.log(`Caso #${i}: ${parseInt(arrange)}`);
   }
 
   if (typeConversion === "max") {
