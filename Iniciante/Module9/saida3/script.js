@@ -16,6 +16,18 @@ for (let line = 1; line <= 7; line++) {
       } else if (col < 2 || col > 7) {
         screen += " ";
       }
+    } else if (line === 4) {
+      if (col === 17) {
+        screen += "x = 35";
+      } else if (col < 17 || col > 22) {
+        screen += " ";
+      }
+    } else if (line === 6) {
+      if (col === 33) {
+        screen += "x = 35";
+      } else if (col < 33) {
+        screen += " ";
+      }
     } else {
       screen += " ";
     }
