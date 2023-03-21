@@ -1,11 +1,20 @@
 const { readFileSync } = require("fs");
 
 const getFormattedNotation = (number) => {
-  const notation = number.toExponential(4).toUpperCase();
+  const notation = number.toExponential(3).toUpperCase();
 
   let [notationTransform, numberForNotation] = notation.split("E");
 
-  return `${notationTransform}E${numberForNotation.padStart(2, "0")}`;
+  let numberFormatter = numberForNotation;
+
+  const numberWithoutSymbol = numberForNotation.slice(1);
+
+  numberFormatter =
+    Number(numberForNotation) < 0
+      ? "-" + numberWithoutSymbol.padStart(2, "0")
+      : "+" + numberWithoutSymbol.padStart(2, "0");
+
+  return `${notationTransform}E${numberFormatter}`;
 };
 
 const [firstLine, secundLine] = readFileSync("stdin", "utf-8").split("\n");
@@ -26,17 +35,9 @@ console.log(`C = ${C.toFixed(2)},  D = ${D.toFixed(2)}`);
 console.log(`A = ${A.toFixed(3)},  B = ${B.toFixed(3)}`);
 console.log(`C = ${C.toFixed(3)},  D = ${D.toFixed(3)}`);
 
-console.log(
-  `A = ${A.toExponential(3).toUpperCase()}, B = ${B.toExponential(
-    3
-  ).toUpperCase()}`
-);
+console.log(`A = ${getFormattedNotation(A)}, B = ${getFormattedNotation(B)}`);
 
-console.log(
-  `C = ${C.toExponential(3).toUpperCase()}, D = ${D.toExponential(
-    3
-  ).toUpperCase()}`
-);
+console.log(`C = ${getFormattedNotation(C)}, D = ${getFormattedNotation(D)}`);
 
 console.log(`A = ${A.toFixed(0)}, B = ${B.toFixed(0)}`);
 console.log(`C = ${C.toFixed(0)}, D = ${D.toFixed(0)}`);
