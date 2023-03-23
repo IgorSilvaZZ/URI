@@ -14,13 +14,10 @@ const B = parseFloat(textTwo);
 const C = textThree;
 const D = textFour;
 
-if (D.length <= 50) {
-  console.log(`${A}${B.toFixed(6)}${C}${D}`);
-  console.log(`${A}\t${B.toFixed(6)}\t${C}\t${D}`);
-  console.log(
-    `${String(A).padEnd(String(A).length + 10, " ")}${B.toFixed(6).padEnd(
-      B.toFixed(6).length + 10,
-      " "
-    )}${C.padEnd(C.length + 10, " ")}${D.padEnd(D.length + 10, " ")}`
-  );
-}
+console.log(`${A}${B.toFixed(6)}${C}${D}`);
+console.log(`${A}\t${B.toFixed(6)}\t${C}\t${D}`);
+console.log(
+  `${A.toString().padEnd(10)}${B.toString().padEnd(10)}${C.padEnd(
+    10
+  )}${D.padEnd(10)}`
+);
