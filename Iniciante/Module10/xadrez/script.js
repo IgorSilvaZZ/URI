@@ -10,16 +10,18 @@ for (let l = 1; l <= line; l++) {
   for (let c = 1; c <= column; c++) {
     if (l % 2 === 1 && c % 2 === 1) {
       col.push(1);
-    } else if (l % 2 == 0 && c % 2 === 1) {
+    } else if (l % 2 === 1 && c % 2 === 0) {
       col.push(0);
-    } else {
+    } else if (l % 2 === 0 && c % 2 === 0) {
       col.push(1);
+    } else if (l % 2 === 0 && c % 2 === 1) {
+      col.push(0);
     }
   }
 
   matrix.push(col);
 }
 
-console.log(matrix[line - 1][column - 1]);
+// console.log(matrix);
 
-// console.log(matrix[line][column]);
+console.log(matrix[line - 1][column - 1]);
