@@ -38,5 +38,5 @@ const alphabet = [
 ];
 
 alphabet.forEach((item, index) => {
-  console.log(`${values[index]} é ${item}`);
+  console.log(`${values[index]} e ${item}`);
 });
