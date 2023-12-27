@@ -1,20 +1,14 @@
 const { readFileSync } = require("fs");
 
-const line = readFileSync("stdin", "utf-8");
+const [line] = readFileSync("stdin", "utf-8").split("\n");
 
-const [A, B] = line.split(" ").map((item) => parseInt(item));
+const [A, B] = line.split(" ").map(Number);
 
-let isMultiple = false;
+const hasMultiple = (number1, number2) => {
+  return number1 % number2 === 0;
+};
 
-for (let i = 0; i <= 10; i++) {
-  const result = parseInt(A * i);
-  if (result === B) {
-    isMultiple = true;
-    break;
-  }
-}
-
-if (isMultiple) {
+if (hasMultiple(A, B) || hasMultiple(B, A)) {
   console.log("Sao Multiplos");
 } else {
   console.log("Nao sao Multiplos");
