@@ -14,7 +14,7 @@ const nota4 = D * 1;
 
 const media = (nota1 + nota2 + nota3 + nota4) / 10;
 
-console.log(`Media: ${media}`);
+console.log(`Media: ${media.toFixed(1)}`);
 
 if (media >= 7.0) {
   console.log(`Aluno aprovado.`);
@@ -23,7 +23,7 @@ if (media >= 7.0) {
 
   const [, notaExame] = line.split("\n").map((item) => parseFloat(item));
 
-  console.log(`Nota do exame: ${notaExame}`);
+  console.log(`Nota do exame: ${notaExame.toFixed(1)}`);
 
   const mediaFinal = (media + notaExame) / 2;
 
@@ -33,7 +33,7 @@ if (media >= 7.0) {
     console.log(`Aluno reprovado.`);
   }
 
-  console.log(`Media final: ${mediaFinal}`);
+  console.log(`Media final: ${mediaFinal.toFixed(1)}`);
 } else {
   console.log(`Aluno reprovado.`);
 }
