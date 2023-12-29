@@ -1,30 +1,33 @@
 const { readFileSync } = require("fs");
 
-const [numberLines] = readFileSync("stdin", "utf-8")
+const [numberSequence] = readFileSync("stdin", "utf-8")
   .split("\n")
   .map((item) => parseInt(item));
 
-let lines = [];
+let currentLine = 1;
 
-let i = 1;
-let count = 0;
+while (currentLine <= numberSequence) {
+  let resultFirstSequence = 0;
+  let resultSecundSequence = 0;
 
-while (i <= numberLines * 2) {
-  let line = [];
+  let firstSequence = "";
+  let secundSequence = "";
 
-  let currentNumber = parseInt(Math.round(i / 2));
-
-  for (let j = 1; j <= 3; j++) {
-    /* line.push(Math.pow(currentNumber, j) + count); */
+  if (currentLine === 1) {
+    resultFirstSequence = 1;
+    resultSecundSequence = 1;
+  } else {
+    resultFirstSequence = currentLine * currentLine;
+    resultSecundSequence = resultFirstSequence * currentLine;
   }
 
-  /* lines.push(line.join(" ")); */
+  firstSequence = `${currentLine} ${resultFirstSequence} ${resultSecundSequence}`;
+  secundSequence = `${currentLine} ${resultFirstSequence + 1} ${
+    resultSecundSequence + 1
+  }`;
 
-  i++;
-  count++;
-  count = count >= 2 ? 0 : count;
+  console.log(firstSequence);
+  console.log(secundSequence);
+
+  currentLine++;
 }
-
-/* lines.forEach((item) => {
-  console.log(item);
-}); */
