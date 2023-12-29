@@ -7,7 +7,7 @@ const [numberOne, numberTwo] = readFileSync("stdin", "utf-8")
 let initial = numberTwo < numberOne ? numberTwo : numberOne;
 let end = numberOne > numberTwo ? numberOne : numberTwo;
 
-for (let i = initial; i < end; i++) {
+for (let i = initial + 1; i < end; i++) {
   if (i % 5 === 2 || i % 5 === 3) {
     console.log(i);
   }
