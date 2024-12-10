@@ -2,40 +2,9 @@ const { readFileSync } = require("fs");
 
 const lines = readFileSync("stdin", "utf-8").split("\n");
 
-/* Explicação resumida
-Todos precisam ser coprimos em relação a ele, ou seja, todos precisam ter um divisor em comum para que ele seja o proximo coprimo a ser colocado.
-
-Passos:
-- Descobrir o todos os divisores possiveis dos numeros que foram enviados
-- Pegar o maior número da lista
-- Coletar também os divisores para o proximo item da lista (maior número + 1)
-- Filtrar a lista de divisores possiveis e deixar só os divisores diferente de 1
-- Filtrar a partir da lista dos divisores do proximo número com a filtragem feita acima e verificar quais não contem os divisores em comum
-- Se não tiver divisor em comum ele é coprimo a todos e será apresentado
- */
-
 const quantityNumber = Number(lines.shift());
 
 const allNumbers = lines.shift().split(" ").map(Number);
-
-/* Lista de divisores dos numeros enviados
-   {
-        7 : [1, 7],
-        1: [1],
-        9: [1, 3, 9],
-        3: [1, 3]
-   }
-*/
-
-/* 
-    Filtragem de divisores diferentes de 1 dos numeros enviados
-    {
-        7: [7],
-        1: [],
-        9: [3, 9],
-        3: [3]
-    }
-*/
 
 const getDividersByNumber = (number) => {
   let dividersByNumber = [];
@@ -59,30 +28,39 @@ const getDividersByNumber = (number) => {
   return dividersByNumber;
 };
 
-const dividersByNumbers = {};
+let maxNumber = Math.max(...allNumbers);
 
-let maxNumber = Number.MIN_VALUE;
+let dividersByNumbers = [];
 
-for (let i = 0; i <= quantityNumber; i++) {
+/* Os divisores dos numeros enviados precisam ser coletados uma unica vez */
+for (let i = 0; i < quantityNumber; i++) {
   const currentNumber = Number(allNumbers[i]);
 
-  dividersByNumbers[currentNumber] = getDividersByNumber(currentNumber);
+  const dividers = getDividersByNumber(currentNumber);
 
-  if (maxNumber < currentNumber) {
-    maxNumber = currentNumber;
-  }
+  dividers.forEach((item) => {
+    if (item !== 1 && !dividersByNumbers.includes(item)) {
+      dividersByNumbers.push(item);
+    }
+  });
 }
 
-const nextNumber = maxNumber + 1;
+let nextNumber = maxNumber + 1;
 
-const dividersByNextNumber = getDividersByNumber(nextNumber);
-
-const filteredDividersByNumbers = Object.keys(dividersByNumbers).map((key) => {
-  const dividersNotWithOneNumber = dividersByNumbers[key].filter(
+while (true) {
+  const dividersByNextNumber = getDividersByNumber(nextNumber).filter(
     (item) => item !== 1
   );
 
-  return dividersNotWithOneNumber;
-});
+  const hasConflict = dividersByNumbers.some((item) =>
+    dividersByNextNumber.includes(item)
+  );
 
-console.log(filteredDividersByNumbers);
+  if (!hasConflict) {
+    break;
+  }
+
+  nextNumber++;
+}
+
+console.log(nextNumber);
