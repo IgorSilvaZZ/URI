@@ -16,18 +16,8 @@ const columnsBoardMap = {
   h: 7,
 };
 
-/* Link para saber movimentos do cavalo */
-/* https://www.chess.com/pt-BR/terms/cavalo-xadrez */
-
-/* Movimentos do cavalo */
-/* 
-    Ele se move uma casa para cima ou para baixo na vertical e mais duas casas na horizontal
-    OU
-    Duas casas para cima ou para baixo na vertical e mais uma casa na horizontal.
-*/
-
 // Criando o tabuleiro
-for (let line = 0; line <= 7; line++) {
+for (let line = 7; line >= 0; line--) {
   const column = [];
 
   for (let col = 0; col <= 7; col++) {
@@ -44,4 +34,13 @@ const translateColumnInitialPosition = columnsBoardMap[columnInitialPosition];
 /* Setando a posição atual do cavalo */
 board[Number(lineInitialPosition)][translateColumnInitialPosition] = true;
 
-console.log(board);
+/* Movimentos Disponiveis */
+let validateMovements = 8;
+
+/* Dividindo para que seja duas partes das colunas (Para tras e Para frente) */
+const availableTotalColumns = validateMovements / 2;
+
+/* Indentificando as linhas disponiveis que vão em cada coluna */
+for (let i = 1; i <= availableTotalColumns; i++) {
+  let currentColumn = translateColumnInitialPosition + 1;
+}
