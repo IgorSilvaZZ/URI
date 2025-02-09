@@ -1,8 +1,10 @@
 const { readFileSync } = require("fs");
 
-const [initialPosition, destinyPosition] = readFileSync("stdin", "utf-8")
+const [firstLine] = readFileSync("stdin", "utf-8")
   .split("\n")
   .map((item) => item.trim());
+
+const [initialPosition, destinyPosition] = firstLine.split(" ");
 
 const board = [];
 const columnsBoardMap = {
@@ -16,8 +18,19 @@ const columnsBoardMap = {
   h: 7,
 };
 
+const linesBoardMap = {
+  8: 0,
+  7: 1,
+  6: 2,
+  5: 3,
+  4: 4,
+  3: 5,
+  2: 6,
+  1: 7,
+};
+
 // Criando o tabuleiro
-for (let line = 7; line >= 0; line--) {
+for (let line = 0; line <= 7; line++) {
   const column = [];
 
   for (let col = 0; col <= 7; col++) {
@@ -29,7 +42,7 @@ for (let line = 7; line >= 0; line--) {
 
 let [columnInitialPosition, lineInitialPosition] = initialPosition.split("");
 
-lineInitialPosition = Number(lineInitialPosition);
+lineInitialPosition = linesBoardMap[Number(lineInitialPosition)];
 
 const translateColumnInitialPosition = columnsBoardMap[columnInitialPosition];
 
@@ -51,22 +64,18 @@ for (let i = 1; i <= availableTotalColumns; i++) {
   /* Deslocamento da coluna */
   let displacementColumn = 0;
 
-  if (i <= 2) {
-    if (i === 1) {
-      displacementColumn = 1;
-      currentColumn -= displacementColumn;
-    } else if (i === 2) {
-      displacementColumn = 2;
-      currentColumn -= displacementColumn;
-    }
+  if (i === 1) {
+    displacementColumn = 1;
+    currentColumn -= displacementColumn;
+  } else if (i === 2) {
+    displacementColumn = 2;
+    currentColumn -= displacementColumn;
+  } else if (i === 3) {
+    displacementColumn = 1;
+    currentColumn += 1;
   } else {
-    if (i === 3) {
-      displacementColumn = 1;
-      currentColumn += 1;
-    } else if (i === 4) {
-      displacementColumn = 2;
-      currentColumn += 2;
-    }
+    displacementColumn = 2;
+    currentColumn += 2;
   }
 
   if (
@@ -79,16 +88,28 @@ for (let i = 1; i <= availableTotalColumns; i++) {
     /* Ou seja serão 4 movimentos de deslocamento de linha para cada coluna */
     if (displacementColumn === 1) {
       displacementLine = 2;
-
-      board[lineInitialPosition - displacementLine][currentColumn] = true;
-      board[lineInitialPosition + displacementLine][currentColumn] = true;
     } else {
       displacementLine = 1;
+    }
 
+    if (board[lineInitialPosition - displacementLine]) {
       board[lineInitialPosition - displacementLine][currentColumn] = true;
+    }
+
+    if (board[lineInitialPosition + displacementLine]) {
       board[lineInitialPosition + displacementLine][currentColumn] = true;
     }
   }
 }
 
-console.table(board);
+let [columnDestiny, lineDestiny] = destinyPosition.split("");
+
+lineDestiny = linesBoardMap[Number(lineDestiny)];
+
+const translateColumnDestiny = columnsBoardMap[columnDestiny];
+
+if (board[lineDestiny][translateColumnDestiny]) {
+  console.log("VALIDO");
+} else {
+  console.log("INVALIDO");
+}
